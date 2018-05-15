@@ -14,7 +14,15 @@ class CreateUserDepartmentsTable extends Migration
     public function up()
     {
         Schema::create('user_departments', function (Blueprint $table) {
-            $table->increments('id');
+          $table->string('id');
+            $table->string('user_id')->nullable();
+            $table->string('department_id')->nullable();
+            $table->enum('edit_access', ['None', 'Me', 'All'])->default('Me');
+            $table->enum('view_access', ['Me', 'All'])->default('Me');
+            $table->enum('approve_access', ['None', 'All', 'Super'])->default('None');
+            $table->dateTime('created')->nullable();
+            $table->dateTime('modified')->nullable();
+            $table->primary('id');
             $table->timestamps();
         });
     }

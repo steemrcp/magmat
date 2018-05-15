@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCompaniesTable extends Migration
+class CreateCompanyUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,13 @@ class CreateCompaniesTable extends Migration
      */
     public function up()
     {
-        Schema::create('companies', function (Blueprint $table) {
+        Schema::create('company_users', function (Blueprint $table) {
           $table->string('id');
-          $table->string('name')->nullable();
-          $table->string('slug')->nullable();
-          $table->string('currency_id')->nullable();
-          $table->string('main_user')->nullable();
+          $table->string('company_id')->nullable();
+          $table->string('user_id')->nullable();
+          $table->string('invitedby_id')->nullable();
+          $table->enum('role',['Owner','Admin','Member'])->default('Member');
+          $table->boolean('invite_accepted')->default(false);
           $table->dateTime('created')->nullable();
           $table->dateTime('modified')->nullable();
           $table->primary('id');
@@ -33,6 +34,6 @@ class CreateCompaniesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('companies');
+        Schema::dropIfExists('company_users');
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDepartmentsTable extends Migration
+class CreateUserInvitesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,13 @@ class CreateDepartmentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('departments', function (Blueprint $table) {
+        Schema::create('user_invites', function (Blueprint $table) {
           $table->string('id');
+          $table->string('user_id');
           $table->string('company_id');
-          $table->string('name');
-          $table->text('description')->nullable();
-          $table->string('colour_hex')->nullable();
-          $table->integer('position');
-          $table->integer('min_approval');
-          $table->boolean('archived')->default(false);
+          $table->string('email');
+          $table->string('reference');
+          $table->boolean('invite_accepted')->default(false);
           $table->dateTime('created');
           $table->dateTime('modified');
           $table->primary('id');
@@ -36,6 +34,6 @@ class CreateDepartmentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('departments');
+        Schema::dropIfExists('user_invites');
     }
 }

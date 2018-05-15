@@ -12,3 +12,5 @@
 */
 
 Route::get('/', 'PageController@home');
+Route::get('/sign-up', 'PageController@signUp');
+Route::post('/create-account', 'AccountController@createAccount');

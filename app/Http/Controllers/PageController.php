@@ -9,7 +9,13 @@ class PageController extends Controller
     //homepage
     public function home()
     {
-      return view ('home.index');
+      return view ('pages.index');
+    }
+
+    //Sign up page
+    public function signUp()
+    {
+        return view('pages.sign-up');
     }
 
 }
