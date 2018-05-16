@@ -80,6 +80,18 @@ class AccountController extends Controller
                     ]);
         // redirect again to login view with some errors line 3
     }
+
+    public function resendActivationCode()
+    {
+       $user = Auth::user();
+
+       $resend = $this->users->resendActivationEmail($user);
+
+       Alert::success('Activation Code Resent')->autoclose(3000);
+
+       return redirect('home');
+
+    }
 }
 
 ?>

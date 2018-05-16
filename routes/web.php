@@ -22,3 +22,4 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('account/login', 'AccountController@login');
+Route::post('account/activate/resend', 'AccountController@resendActivationCode');

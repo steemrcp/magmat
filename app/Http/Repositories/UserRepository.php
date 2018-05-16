@@ -13,6 +13,7 @@ use DB;
 use Hash;
 use Auth;
 use Ramsey\Uuid\Uuid;
+use App\Mail\ResendActivationLink;
 
 /**
  *
@@ -66,6 +67,10 @@ class UserRepository
       DB::commit();
       return $user;
 
+  }
+
+  public function resendActivationEmail($user){
+      Mail::to($user->email)->send(new ResendActivationLink($user));
   }
 
 }
