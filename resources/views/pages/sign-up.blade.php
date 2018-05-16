@@ -32,7 +32,7 @@
                                                 @elseif(isset($_GET['email_from_footer']))
                                                     <input name="email" value="{{ $_GET['email_from_footer'] }}" class="form-control"  placeholder="email" disabled />
                                                 @else
-                                                     <input name="email" value="{{ old('email')}}" class="form-control" id="work_email" placeholder="Work Email" type="email">
+                                                     <input name="email" class="form-control" id="work_email" placeholder="Work Email" type="email">
                                                 @endif
 
                                                 </input>
