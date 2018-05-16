@@ -35,4 +35,10 @@ class PageController extends Controller
         return view('home.index');
     }
 
+    //Sign in page
+    public function signIn()
+    {
+        return view('pages.sign-in');
+    }
+
 }

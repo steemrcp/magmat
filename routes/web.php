@@ -14,9 +14,11 @@
 Route::get('/', 'PageController@home');
 Route::get('/sign-up', 'PageController@signUp');
 Route::get('/home', 'PageController@index')->middleware('auth');
+Route::get('/sign-in', 'PageController@signIn')->name('login');
 
 Route::post('/create-account', 'AccountController@createAccount');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::post('account/login', 'AccountController@login');
