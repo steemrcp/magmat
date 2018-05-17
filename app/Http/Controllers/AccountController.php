@@ -18,7 +18,7 @@ class AccountController extends Controller
     public function __construct(UserRepository $users, CompanyRepository $companies)
     {
 
-        $this->middleware('auth', ['except' => ['createAccount']]);
+        $this->middleware('auth', ['except' => ['createAccount' , 'accountActivationByEmail']]);
         $this->users = $users;
         $this->companies = $companies;
     }
@@ -90,6 +90,26 @@ class AccountController extends Controller
        Alert::success('Activation Code Resent')->autoclose(3000);
 
        return redirect('home');
+
+    }
+
+    public function accountActivationByEmail($id)
+    {
+
+        // Lets activate user account
+        $activate = $this->users->accountActivationByEmail($id);
+
+        if ($activate) {
+          Auth::logout();
+            //send to where they will enter their details
+            //Alert::success('Thanks for veryfying your email. You can now log in to your Magmat Account.')->persistent("OK");
+            return redirect('/sign-in')->with('message', "Thanks for veryfying your email. You can now log in to your MAgmat Account.");;
+
+        }
+
+            Alert::error('Cannot activate your account at this time','Invalid activation key')->autoclose(4000);
+            return redirect('home');
+
 
     }
 }

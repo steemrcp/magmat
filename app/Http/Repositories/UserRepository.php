@@ -73,4 +73,19 @@ class UserRepository
       Mail::to($user->email)->send(new ResendActivationLink($user));
   }
 
+  public function accountActivationByEmail($id)
+  {
+      $user = User::where('id', $id)->update(['verified' => 1,'active'=>1]);
+
+      if ($user) {
+
+          return true;
+
+      } else {
+
+          return false;
+      }
+
+  }
+
 }
